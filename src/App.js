@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import MetaMaskConnector from './MetaMaskConnector';
 
 function App() {
-  return (
+ const [balance, setBalance] = useState('');
+
+ const handleBalanceUpdate = (newBalance) => {
+    setBalance(newBalance);
+ };
+
+ return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav>
+        <p>Balance: {balance} ETH</p>
+      </nav>
+      <main>
+        <MetaMaskConnector onBalanceUpdate={handleBalanceUpdate} />
+        {/* Your game components go here */}
+      </main>
     </div>
-  );
+ );
 }
 
 export default App;
